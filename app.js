@@ -4,10 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var index = require('./routes/index');
 var users = require('./routes/users');
-var testcall = require('./routes/testcall');
+
+
+var createsandbox = require('./routes/createsandbox');
+//If you want to get the list of banks / delete sandbox  you need to uncomment the lines below and some lines further down
+//var getbanks = require('./routes/getbanks');
+//var deletesandbox = require('./routes/deletesandbox');
 
 var app = express();
 
@@ -25,7 +29,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/testcall', testcall);
+app.use('/createsandbox', createsandbox);
+
+//Uncomment the lines below aswell. You need to go each file and change the parameters to match your sandbox id.
+//app.use('/getbanks', getbanks);
+//app.use('/deletesandbox', deletesandbox);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
